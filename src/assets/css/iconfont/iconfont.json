@@ -1,0 +1,23 @@
+{
+  "id": "2025461",
+  "name": "手机商城",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12855730",
+      "name": "顶部",
+      "font_class": "dingbu",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "5561621",
+      "name": "收 藏",
+      "font_class": "shoucang",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    }
+  ]
+}

@@ -1,28 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <keep-alive exclude="detail">
+      <router-view></router-view>
+    </keep-alive>
+    <MainTabBar>
+    </MainTabBar>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MainTabBar from 'components/content/MainTabBar/MainTabBar.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainTabBar
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '~asset/css/iconfont/iconfont.css';
+/* 这里的导入用到了别名，别名在vue.config.js中有定义 */
+@import '~asset/css/base.css';
 </style>
