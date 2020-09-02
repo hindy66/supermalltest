@@ -44,26 +44,32 @@
       }
     },
     mounted: function () {
-      // 1.操作DOM, 在前后添加Slide
+      // 1.操作DOM, 在前后添加Slide,原来是延迟3000毫秒
       setTimeout(() => {
         this.handleDom();
 
         // 2.开启定时器
         this.startTimer();
-      }, 3000)
+      }, 1000)
     },
     methods: {
 		  /**
        * 定时器操作
        */
       startTimer: function () {
-		    this.playTimer = window.setInterval(() => {
-		      this.currentIndex++;
-		      this.scrollContent(-this.currentIndex * this.totalWidth);
-        }, this.interval)
+        //if判断是自己增加的代码
+        if(this.playTimer == null)
+        {
+          this.playTimer = window.setInterval(() => {
+            this.currentIndex++;
+            this.scrollContent(-this.currentIndex * this.totalWidth);
+          }, this.interval)
+        }
       },
       stopTimer: function () {
-        window.clearInterval(this.playTimer);
+        window.clearInterval(this.playTimer)
+        //下面是自己加的代码
+        this.playTimer = null
       },
 
       /**

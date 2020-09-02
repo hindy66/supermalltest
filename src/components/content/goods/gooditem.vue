@@ -1,13 +1,13 @@
 <template>
   <div class="goodlist-item" @click="itemclick">
     <div class="image">
-      <img :src="gooditem.show.img" alt="" @load="imgOnLoad">
+      <img v-lazy="showImg" alt="" @load="imgOnLoad">
     </div>
     <div class="intro">
-        <div class="title">{{gooditem.title}}</div>
+        <p class="title">{{gooditem.title}}</p>
         <span class="price">￥{{gooditem.price}}</span>
         <span class="iconfont icon-shoucang cfav">{{gooditem.cfav}}</span>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -22,18 +22,31 @@ export default {
       }
     }
   },
+  computed: {
+    showImg(){
+      return  this.gooditem.show ? this.gooditem.show.img : this.gooditem.image
+    }
+  },
   methods: {
     imgOnLoad(){
-      this.$bus.$emit('itemImgLoad')
+      if(this.$route.path.indexOf('/home') !== -1){
+        this.$bus.$emit('homeItemImgLoad')
+      }
+      if(this.$route.path.indexOf('/detail') !== -1){
+        this.$bus.$emit('detailItemImgLoad')
+      }
       // this.$store.state.betterScroll.refresh()
     },
     itemclick(){
-      this.$router.push({
-        path:"/detail",
-        query:{
-          id:this.gooditem.iid
-        }
-      })
+      if(this.gooditem.iid)
+      {
+        this.$router.push({
+          path:"/detail",
+          query:{
+            id:this.gooditem.iid
+          }
+        })
+      }
     }
   },
 }
@@ -45,6 +58,7 @@ export default {
     width: 48%;
     position: relative;
     padding-bottom: 45px;
+    /* margin-bottom: 5px; */
   }
   .goodlist-item .image{
     display: block;

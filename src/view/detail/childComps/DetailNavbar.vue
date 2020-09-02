@@ -27,6 +27,7 @@ export default {
   methods: {
     centerItemClick(index){
       this.currentIndex = index
+      this.$emit('navBarItemClick',index)
     },
     backClick(){
       this.$router.back()

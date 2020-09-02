@@ -28,8 +28,8 @@ export default {
 <style>
  .goodlist{
    display: flex;
-   justify-content:space-between;
    flex-wrap: wrap;
+   justify-content: space-around;
    padding:2px;
  }
 </style>

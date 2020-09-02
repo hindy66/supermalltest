@@ -1,12 +1,12 @@
 <template>
     <div class="home">
       <!-- 自定义顶部导航栏的颜色,通过:backColor传入一个字符串 -->
-      <NavBar :bgColor='"pink"' class="home-navbar">
+      <NavBar :bgColor="'#ff8198'" class="home-navbar">
         <div slot="center">购物街</div>
       </NavBar>
       <TabControl :titles="['流行','新款','精选']" @childItemClick="changeGoods" ref="tabcontrol1" class="tabcontrol1" v-show="isTabFixed"></TabControl>
       <Scroll class="content" ref="Scroll" :probeType="3" :pullUpLoad="true" @scroll="scroll" @pullingUp="loadMore">
-        <HomeSwiper :banner='banner' class="HomeSwiper" @swiperImgLoad="swiperImgLoad"></HomeSwiper>
+        <HomeSwiper :banner='banner' class="HomeSwiper" @swiperImgLoad="swiperImgLoad" ref="homeSwiper"></HomeSwiper>
         <HomeRecommend :recommends="recommend" class="homerecommend"></HomeRecommend>
         <HomeFeatureView></HomeFeatureView>
         <TabControl :titles="['流行','新款','精选']" @childItemClick="changeGoods" ref="tabcontrol2"></TabControl>
@@ -38,7 +38,7 @@ export default {
     TabControl,
     Goodlist,
     Scroll,
-    BackTop
+    BackTop,
   },
   data() {
     return {
@@ -63,7 +63,8 @@ export default {
       tabControlOffSetTop:0,
       isTabFixed:false,
       //用于记录从home组件切换到其他界面之前，better-scroll滚动了的高度
-      saveScrollY:0
+      saveScrollY:0,
+      ItemLoadListener:null
     }
   },
   computed: {
@@ -80,20 +81,25 @@ export default {
     this.loadHomeGoods('pop')
   },
   mounted() {
-    let refresh = debounce(this.$refs.Scroll.refresh,100)
-
+     //接收防抖函数
+    let refresh = debounce(this.$refs.Scroll.refresh,500)
+    this.ItemLoadListener = function () {
+      refresh()
+    }
      //监听gooditem的图片加载
-    this.$bus.$on('itemImgLoad',() => {
-       refresh()
-    })
-
+    this.$bus.$on('homeItemImgLoad',this.ItemLoadListener)
   },
   activated() {
+    this.$refs.homeSwiper.swiperObj.startTimer()
+    //组件处于激活状态时，回到保存的位置，注意第三个参数时间不能为0，不然会有bug。并且还要再调用一次refresh()函数
+    this.$refs.Scroll.scrollTo(0,this.saveScrollY,100)
     this.$refs.Scroll.refresh()
-    this.$refs.Scroll.scrollTop(0,this.saveScrollY,0)
   },
   deactivated() {
-    this.saveScrollY = this.$refs.Scroll.getScrollY()
+    this.saveScrollY = this.$refs.Scroll.getY()
+    this.$bus.$off('homeItemImgLoad',this.ItemLoadListener)
+    //停止轮播图
+    this.$refs.homeSwiper.swiperObj.stopTimer()
   },
   methods: {
     /* 事件监听相关的方法*/
@@ -118,7 +124,7 @@ export default {
       this.tabControlOffSetTop = this.$refs.tabcontrol2.$el.offsetTop
     },
     BackTopclick(){
-      this.$refs.Scroll.scrollTop(0,0)
+      this.$refs.Scroll.scrollTo(0,0)
     },
     scroll(position){
       this.showBackTopIcon = (-position.y) > 800 ? true : false
@@ -174,18 +180,18 @@ export default {
   }
   /*为better-scroll组件设置固定高度*/
    /* 1. */
-  /* .content{
+  .content{
     height: calc( 100vh - 93px);
     overflow: hidden;
-  } */
+  }
 
   /*  2.  */
-  .content{
+  /* .content{
     position: absolute;
     right: 0;
-    left: 0;
+    /* left: 0;
     top:44px;
     bottom: 49px;
     z-index: -2;
-  }
+  } */
 </style>

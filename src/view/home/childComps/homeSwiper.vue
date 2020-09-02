@@ -1,5 +1,5 @@
 <template>
-    <Swiper>
+    <Swiper ref="Swiper">
       <SwiperItem v-for="item in banner">
         <a :href="item.link">
           <img :src="item.image" alt="" @load="swiperImgLoad">
@@ -13,6 +13,11 @@ import {Swiper,SwiperItem} from 'components/common/swiper/index.js'
 
 export default {
   name:'homeSwiper',
+  data() {
+    return {
+      swiperObj:null
+    }
+  },
   props:{
     banner:{
       type:Array,
@@ -29,6 +34,9 @@ export default {
     swiperImgLoad(){
       this.$emit('swiperImgLoad',"轮播图加载完成")
     }
+  },
+  mounted() {
+    this.swiperObj = this.$refs.Swiper
   },
 }
 </script>

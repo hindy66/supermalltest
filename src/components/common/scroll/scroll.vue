@@ -35,7 +35,6 @@ export default {
       this.$emit("scroll",position)
     })
     this.bS.on("pullingUp", () => {
-      console.log("加载更多")
       this.$emit("pullingUp")
     })
     this.$store.commit({
@@ -44,19 +43,17 @@ export default {
     })
   },
   methods: {
-    scrollTop(x,y,time=500){
+    scrollTo(x,y,time=500){
       this.bS && this.bS.scrollTo(x,y,time)
     },
     finishPullUp(){
-      this.bS && window.setTimeout(() => {
-         this.bS.finishPullUp()
-      },1000)
+      this.bS && this.bS.finishPullUp()
     },
     refresh(){
       this.bS && this.bS.refresh()
     },
-    getScrollY(){
-      return this.bS.y ? this.bS.y : 0
+    getY(){
+      return this.bS ? this.bS.y : 0
     }
   },
 }

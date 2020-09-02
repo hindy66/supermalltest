@@ -45,10 +45,10 @@ export default {
   }
   .info-title{
     color: black;
-    font-size: 14px;
+    font-size: 20px;
   }
   .info-price{
-    margin-top: 5px;
+    margin-top: 8px;
   }
   .info-price span:first-child{
     margin-left: 0;
@@ -100,6 +100,6 @@ export default {
   }
   .info-service-item{
     flex: 1;
-    text-align: center;
+    text-align: start;
   }
 </style>

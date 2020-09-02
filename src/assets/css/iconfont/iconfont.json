@@ -6,6 +6,83 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9875087",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "3234880",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "908898",
+      "name": "积分",
+      "font_class": "jifen",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "1672778",
+      "name": "信息",
+      "font_class": "xinxi",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "2392671",
+      "name": "会员 (1)",
+      "font_class": "huiyuan",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "3129036",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "6891525",
+      "name": "购物",
+      "font_class": "shopping",
+      "unicode": "e792",
+      "unicode_decimal": 59282
+    },
+    {
+      "icon_id": "12987198",
+      "name": "个人中心",
+      "font_class": "profile",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "4237011",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "6469976",
+      "name": "收 藏 ",
+      "font_class": "shoucang1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "10459045",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
       "icon_id": "12855730",
       "name": "顶部",
       "font_class": "dingbu",

@@ -8,7 +8,12 @@ export function getDetail(id){
     }
   })
 }
-
+//请求详情页中的推荐数据
+export function getRecommend(){
+  return request({
+    url:'/recommend'
+  })
+}
 export function DetailGoods(itemInfo,columns,services){
   this.title = itemInfo.title
   this.desc = itemInfo.desc
@@ -29,3 +34,12 @@ export function ShopInfo(shopInfo){
   this.score = shopInfo.score
   this.goodsCount = shopInfo.cGoods
 }
+
+export function GoodsParam (info, rule) {
+   // 注: images可能没有值(某些商品有值, 某些没有值)
+  this.image = info.images ? info.images[0] : '';
+  this.infos = info.set;
+  this.sizes = rule.tables;
+}
+
+

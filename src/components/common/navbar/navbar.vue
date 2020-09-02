@@ -1,5 +1,5 @@
 <template>
-  <div class="box" :style="backgroundcolor">
+  <div class="box nav-bar" :style="backgroundcolor">
       <div class="nav-left"><slot name="left"></slot></div>
       <div class="nav-center"><slot name="center"></slot></div>
       <div class="nav-right"><slot name="right"></slot></div>
@@ -17,7 +17,7 @@ export default {
   props:{
     bgColor:{
       type:String,
-      defalut:'white'
+      defalut:'pink'
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="tabbar-item" @click="itemclick">
+    <div class="tab-bar-item" @click="itemclick">
       <div  v-if="!isActive"><slot name="item-icon"></slot></div>
       <div v-else><slot name="item-icon-active"></slot></div>
       <div :style="textColor"><slot name="item-text" ></slot></div>
@@ -38,20 +38,20 @@ export default {
 </script>
 
 <style>
-  .tabbar-item{
+  .tab-bar-item{
     flex: 1;
     text-align: center;
     /* tabbar常见的高度就是49px */
     height: 49px;
     font-size: 14px;
   }
-  .tabbar-item img{
+  .tab-bar-item img{
     margin-top: 3px;
     height: 20px;
     width: 20px;
     vertical-align: middle;
   }
-  .tabbar-item img.active{
+  .tab-bar-item img.active{
     display: none;
   }
 </style>

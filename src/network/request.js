@@ -61,8 +61,18 @@ export function request (config){
         return res.data
       },
       error => {
-        console.log("请求响应失败===>")
+        console.log(error)
+        if (error && error.response) {
+          switch (error.response.status) {
+            case 400:
+              error.message = '请求错误'
+              break
+            case 401:
+              error.message = '未授权的访问'
+              break
+          }
       }
+     }
     )
 
 
