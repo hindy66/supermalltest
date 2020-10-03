@@ -37,7 +37,7 @@ import axios from 'axios'
 export function request (config){
     //  1.创建axios实例
     const instance1 = axios.create({
-      baseURL:'http://152.136.185.210:8000/api/z8'
+      baseURL:'http://152.136.185.210:8000/api/w6'
     })
 
     //  2.axios的拦截器,如果对发送请求拦截不返回，则只会执行catch()函数
